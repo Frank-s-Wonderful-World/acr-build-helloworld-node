@@ -38,4 +38,8 @@ jobs:
           name: aci-sampleapp
           location: "west us"
       - name: "Deployment Information"
-        run: echo "( az container show --resource-group github-actions-rg --name aci-sampleapp --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}")"
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+            az container show --resource-group github-actions-rg --name aci-sampleapp --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}"
