@@ -37,3 +37,5 @@ jobs:
           registry-password: ${{ secrets.REGISTRY_PASSWORD }}
           name: aci-sampleapp
           location: "west us"
+      - name: "Deployment Information"
+        run: echo "fqdn=$( az container show --resource-group github-actions-rg --name aci-sampleapp --query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" --output table)" >> $GITHUB_ENV
